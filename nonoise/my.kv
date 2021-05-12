@@ -1,0 +1,444 @@
+WindowsManager:
+    Intro:
+    Login:
+    Signup:
+    ProbLogin:
+    Safemode:
+    Manualmode:
+
+<Manualmode>
+    name: "intro"
+    canvas.before:
+        Color:
+            rgba: (65/255, 179/255, 163/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    RelativeLayout:
+        size: root.width, root.height
+        Image:
+            source: 'images/logo1.png'
+            size: self.texture_size
+            size_hint_x: 0.7
+            size_hint_y: 0.7
+            pos_hint: {"center_x":0.5, "top":1.1}
+<Intro>
+    name: "intro"
+    canvas.before:
+        Color:
+            rgba: (65/255, 179/255, 163/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    RelativeLayout:
+        size: root.width, root.height
+        Image:
+            source: 'images/logo1.png'
+            size: self.texture_size
+            size_hint_x: 0.7
+            size_hint_y: 0.7
+            pos_hint: {"center_x":0.5, "top":1.1}
+
+        RoundedButton:
+            text: "CREATE ACCOUNT"
+            size: self.texture_size
+            pos_hint: {"center_x": 0.5, "center_y": 0.3}
+            on_press: app.root.current = "signup"
+        RoundedButton:
+            text: "LOG IN"
+            size: self.texture_size
+            pos_hint: {"center_x": 0.5, "center_y": 0.15}
+            on_press: app.root.current = "safemode"
+        RoundedButton1:
+            text: "Unable to Log in?"
+            pos_hint: {"center_x": 0.5, "bottom": 1}
+            on_press: app.root.current = "helplog"
+        Label1:
+            text: "By Tapping create account or log in, you agree to our terms and conditions."
+            pos_hint: {"center_x": 0.5, "center_y": 0.45}
+
+
+<Login>:
+    name: "login"
+    canvas.before:
+        Color:
+            rgba:(1,1,1,1)
+
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    canvas:
+        Color:
+            rgba: (1, 1, 1, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'images/LoginBack.png'
+    RelativeLayout:
+        size: root.width, root.height
+        Image:
+            source: 'images/LoginLogo.png'
+            size: self.texture_size
+            size_hint_x: 0.5
+            size_hint_y: 0.5
+            pos_hint: {"center_x":0.5, "center_y":0.65}
+
+        TextInput:
+            background_normal: "images/inputText1.png"
+            id: username
+            hint_text: "Username... "
+            size_hint_x: 0.8
+            size_hint_y: 0.1
+            pos_hint: {"center_x":0.5, "top": 0.40}
+
+        TextInput:
+            background_normal:"images/inputText1.png"
+            id: password
+            hint_text: "Password... "
+            size_hint_x: 0.8
+            size_hint_y: 0.1
+            pos_hint: {"center_x":0.5, "top": 0.30}
+            password: True
+        Button:
+            background_normal:"images/logbut.png"
+            border : 0,0,0,0
+            text: "LOGIN!"
+            pos_hint: {"center_x": 0.5, "center_y": 0.1}
+            on_press:
+                if root.loginAuthen(username,password) == 1: \
+                app.root.current = "intro"
+
+            size_hint_x: 0.4
+            size_hint_y: 0.1
+        Label:
+            text: "Login to My Account!!"
+            pos_hint:{"center_x": 0.5, "center_y": 0.45}
+            font_size: 20
+            font_name: "Comic"
+            color: (5/255, 56/255, 107/255, 1)
+        ##change button
+
+        Button:
+            border:(0,0,0,0)
+            background_normal: "images/backbut.png"
+            size_hint_x: 0.15
+            size_hint_y: 0.1
+            pos_hint: {"center_x": 0.1, "top": 1}
+            on_press: app.root.current = "intro"
+        Button:
+            background_color:(0,0,0,0)
+            text: "Unable to Log in?"
+            size_hint_x: 0.1
+            size_hint_y: 0.1
+            pos_hint:{"center_x": 0.5, "top": 0.235}
+            font_size: 20
+            font_name: "Comic"
+            color: (5/255, 56/255, 107/255, 1)
+            on_press:app.root.current = "helplog"
+
+<Signup>
+    name: "signup"
+    canvas.before:
+        Color:
+            rgba: (195/255, 141/255, 158/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    RelativeLayout:
+        size: root.width, root.height
+        Image:
+            source: 'images/logo5.png'
+            size: self.texture_size
+            size_hint_x: 0.7
+            size_hint_y: 0.5
+            pos_hint: {"center_x":0.5, "top":1}
+        TextInput1:
+            id: email
+            hint_text: "Email: "
+            size_hint_x: 0.7
+            size_hint_y: 0.05
+            pos_hint: {"center_x":0.5, "top": 0.48}
+        TextInput1:
+            id: username
+            hint_text: "Username: "
+            size_hint_x: 0.7
+            size_hint_y: 0.05
+            pos_hint: {"center_x":0.5, "top": 0.40}
+        TextInput1:
+            id: password
+            hint_text: "Password: "
+            size_hint_x: 0.7
+            size_hint_y: 0.05
+            pos_hint: {"center_x":0.5, "top": 0.32}
+            password: True
+        TextInput1:
+            id: confirm
+            hint_text: "Confirm Password: "
+            password: True
+            size_hint_x: 0.7
+            size_hint_y: 0.05
+            pos_hint: {"center_x":0.5, "top": 0.24}
+        RoundedButton2:
+            text: "SIGN UP!"
+            pos_hint: {"center_x": 0.5, "center_y": 0.1}
+            on_press:
+                if root.signupAuthen(email,username,password,confirm) == 2: \
+                app.root.current = "login"
+            size_hint_x: 0.4
+            size_hint_y: 0.1
+        Label:
+            text: "Create My Account !!"
+            pos_hint:{"center_x": 0.5, "center_y": 0.525}
+            font_size: 25
+            font_name: "Comic"
+
+        Button:
+            background_normal: "images/back1.png"
+            border: (0,0,0,0)
+            size_hint_x: 0.15
+            size_hint_y: 0.1
+            pos_hint: {"center_x": 0.1, "top": 1}
+            on_press: app.root.current = "login"
+
+<ProbLogin>
+    name: "helplog"
+    canvas.before:
+        Color:
+            rgba: (65/255, 179/255, 163/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    RelativeLayout:
+        size: root.width, root.height
+        Label:
+            text: "help with login"
+
+<Safemode>
+    name: "safemode"
+    canvas.before:
+        Color:
+            rgba: (224/255, 207/255, 237/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    canvas:
+        Color:
+            rgba:(164/255, 114/255, 203/255, 1)
+        Rectangle:
+            pos:(0,root.height-50)
+            size: (root.width,50)
+        Rectangle:
+            pos:(0,0)
+            size: (root.width,50)
+
+    RelativeLayout:
+        size: root.width, root.height
+
+    Label:
+        text: "SAFE MODE"
+        bold: True
+        font_size: 35
+        pos_hint: {"center_x": 0.5,"top": 1.3}
+        color: (120/255, 20/255, 148/255, 1)
+    Button:
+        size_hint: 0.15,0.075
+        pos_hint:{"center_x": 0.1, "top": 0.075}
+        background_normal: "images/use.png"
+        background_down: "images/use.png"
+        border:(0,0,0,0)
+    Button:
+        size_hint: 0.15,0.075
+        pos_hint:{"center_x": 0.9, "top": 0.075}
+        background_normal: "images/setting.png"
+        background_down: "images/setting.png"
+        border:(0,0,0,0)
+    Button:
+        size_hint: 0.2,0.1
+        pos_hint:{"center_x": 0.5, "top": 0.15}
+        background_normal: "images/help.png"
+        background_down:"images/help.png"
+        border:(0,0,0,0)
+    Button:
+        background_color: (1,1,1,1)
+        size_hint_x: 0.8
+        size_hint_y: 0.5
+        background_normal: "images/logo5.png"
+        background_down: "images/logo3.png"
+        pos_hint: {"center_x":0.5, "top":0.8}
+        on_press: root.activateSafemode()
+    Button:
+        size_hint: 0.2,0.1
+        pos_hint:{"center_x": 0.5, "top": 0.15}
+        background_normal: "images/help.png"
+        background_down:"images/help.png"
+        border:(0,0,0,0)
+
+    Button:
+        text: "Auto"
+        pos_hint: {"center_x":0.1,"top": 0.975}
+        size_hint_x: 0.1
+        size_hint_y: 0.05
+        background_normal: ""
+        background_color:(1,1,1,0)
+        font_size: 20
+        bold: True
+    Button:
+        text: "Manual"
+        pos_hint: {"center_x":0.35,"top": 0.975}
+        size_hint_x: 0.1
+        size_hint_y: 0.05
+        background_normal: ""
+        background_color:(1,1,1,0)
+        font_size: 20
+        bold: True
+    Button:
+        text: "Track"
+        pos_hint: {"center_x":0.575,"top": 0.975}
+        size_hint_x: 0.1
+        size_hint_y: 0.05
+        background_normal: ""
+        background_color:(1,1,1,0)
+        font_size: 20
+        bold: True
+    Button:
+        text: "Selection"
+        pos_hint: {"center_x":0.85,"top": 0.975}
+        size_hint_x: 0.1
+        size_hint_y: 0.05
+        background_normal: ""
+        background_color:(1,1,1,0)
+        font_size: 20
+        bold: True
+    Label:
+        text: "Push the Hush Button \n To enter Safe Mode"
+        pos_hint:{"center_x": 0.5,"center_y": 0.25}
+        valign: 'middle'
+        bold: True
+        font_size: 20
+        color:(120/255, 20/255, 148/255, 1)
+
+
+<Label1@Label>:
+    font_size: 15
+    font_name: "Comic"
+    color: (172/255, 59/255, 97/255, 1)
+    text_size: ((root.width)/1.5), None
+    size: self.texture_size
+
+
+
+<RoundedButton1@Button>:
+    font_size: 20
+    size_hint: 0.7,0.1
+    background_color: (0,0,0,0)
+    font_name: "Comic"
+    background_normal: ''
+    color: (172/255, 59/255, 97/255, 1)
+    canvas.before:
+        Color:
+            rgba:(0, 0, 0, 0)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [18]
+
+<RoundedButton@Button>:
+    font_size: 20
+    size_hint: 0.7,0.1
+    background_color: (0,0,0,0)
+    font_name: "Comic"
+    background_normal: ''
+    color: (172/255, 59/255, 97/255, 1)
+    canvas.before:
+        Color:
+            rgba:(232/255, 168/255, 124/255, 1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [18]
+
+
+<TextInput1@TextInput>:
+    font_size: '14dp'
+    font_name: "Comic"
+    background_color: 113/255, 69/255, 161/255, 1
+    cursor_color: (1,1,1,1)
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+    canvas.after:
+        Color:
+            rgb: (113/255, 69/255, 161/255, 1)
+        Ellipse:
+            angle_start:180
+            angle_end:360
+            pos:(self.pos[0] - self.size[1]/2.0, self.pos[1])
+            size: (self.size[1], self.size[1])
+        Ellipse:
+            angle_start:360
+            angle_end:540
+            pos: (self.size[0] + self.pos[0] - self.size[1]/2.0, self.pos[1])
+            size: (self.size[1], self.size[1])
+        Color:
+            rgba: (113/255, 69/255, 161/255, 1)
+        Line:
+            points: self.pos[0] , self.pos[1], self.pos[0] + self.size[0], self.pos[1]
+        Line:
+            points: self.pos[0], self.pos[1] + self.size[1], self.pos[0] + self.size[0], self.pos[1] + self.size[1]
+        Line:
+            ellipse: self.pos[0] - self.size[1]/2.0, self.pos[1], self.size[1], self.size[1], 180, 360
+        Line:
+            ellipse: self.size[0] + self.pos[0] - self.size[1]/2.0, self.pos[1], self.size[1], self.size[1], 360, 540
+
+<TextInput2@TextInput>:
+    font_size: '20dp'
+    font_name: "Comic"
+    background_normal:""
+    background_color: 1, 1, 1, 1
+    cursor_color: (0,0,0,1)
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+    canvas.after:
+        Color:
+            rgb: (1, 1, 1, 1)
+        Ellipse:
+            angle_start:180
+            angle_end:360
+            pos:(self.pos[0] - self.size[1]/2.0, self.pos[1])
+            size: (self.size[1], self.size[1])
+        Ellipse:
+            angle_start:360
+            angle_end:540
+            pos: (self.size[0] + self.pos[0] - self.size[1]/2.0, self.pos[1])
+            size: (self.size[1], self.size[1])
+        Color:
+            rgba: (1, 1, 1, 1)
+        Line:
+            points: self.pos[0] , self.pos[1], self.pos[0] + self.size[0], self.pos[1]
+        Line:
+            points: self.pos[0], self.pos[1] + self.size[1], self.pos[0] + self.size[0], self.pos[1] + self.size[1]
+        Line:
+            ellipse: self.pos[0] - self.size[1]/2.0, self.pos[1], self.size[1], self.size[1], 180, 360
+        Line:
+            ellipse: self.size[0] + self.pos[0] - self.size[1]/2.0, self.pos[1], self.size[1], self.size[1], 360, 540
+
+<RoundedButton2@Button>:
+    font_size: 20
+    size_hint: 0.7,0.1
+    background_color: (0,0,0,0)
+    font_name: "Comic"
+    background_normal: ''
+    color: (1, 1, 1, 1)
+    canvas.before:
+        Color:
+            rgba:(149/255, 117/255, 245/255, 1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [18]
+
